@@ -1,0 +1,109 @@
+! After configuring zone-pairs and specifying the policy maps for them
+R3#show zone-pair security
+Zone-pair name INSIDE_TO_INTERNET
+    Source-Zone INSIDE  Destination-Zone INTERNET
+    service-policy INSIDE_TO_INTERNET
+Zone-pair name CONFROOM_TO_INTERNET
+    Source-Zone CONFROOM  Destination-Zone INTERNET
+    service-policy CONFROOM_TO_INTERNET
+
+R3#show policy-map type inspect zone-pair
+
+policy exists on zp INSIDE_TO_INTERNET
+  Zone-pair: INSIDE_TO_INTERNET
+
+  Service-policy inspect : INSIDE_TO_INTERNET
+
+    Class-map: INSIDE_PROTOCOLS (match-any)
+      Match: protocol tcp
+        0 packets, 0 bytes
+        30 second rate 0 bps
+      Match: protocol udp
+        0 packets, 0 bytes
+        30 second rate 0 bps
+      Match: protocol icmp
+        0 packets, 0 bytes
+        30 second rate 0 bps
+
+   Inspect
+        Session creations since subsystem startup or last reset 0
+        Current session counts (estab/half-open/terminating) [0:0:0]
+        Maxever session counts (estab/half-open/terminating) [0:0:0]
+        Last session created never
+        Last statistic reset never
+        Last session creation rate 0
+        Maxever session creation rate 0
+        Last half-open session total 0
+        TCP reassembly statistics
+        received 0 packets out-of-order; dropped 0
+        peak memory usage 0 KB; current usage: 0 KB
+        peak queue length 0
+
+
+    Class-map: class-default (match-any)
+      Match: any
+      Drop
+        0 packets, 0 bytes
+
+policy exists on zp CONFROOM_TO_INTERNET
+  Zone-pair: CONFROOM_TO_INTERNET
+
+  Service-policy inspect : CONFROOM_TO_INTERNET
+
+    Class-map: CONFROOM_PROTOCOLS (match-any)
+      Match: protocol http
+        0 packets, 0 bytes
+        30 second rate 0 bps
+      Match: protocol https
+        0 packets, 0 bytes
+        30 second rate 0 bps
+      Match: protocol dns
+        0 packets, 0 bytes
+        30 second rate 0 bps
+
+   Inspect
+        Session creations since subsystem startup or last reset 0
+        Current session counts (estab/half-open/terminating) [0:0:0]
+        Maxever session counts (estab/half-open/terminating) [0:0:0]
+        Last session created never
+        Last statistic reset never
+        Last session creation rate 0
+        Maxever session creation rate 0
+        Last half-open session total 0
+        TCP reassembly statistics
+        received 0 packets out-of-order; dropped 0
+        peak memory usage 0 KB; current usage: 0 KB
+        peak queue length 0
+
+
+    Class-map: class-default (match-any)
+      Match: any
+      Drop
+        0 packets, 0 bytes
+
+! In order for the Lab to work we have to actually make THE VLAN INTERFACES zone members
+R3(config-if)#interface vlan 1
+R3(config-if)#zone-member security INTERNET
+R3(config-if)#interface vlan 2
+R3(config-if)#zone-member security INSIDE
+R3(config-if)#interface vlan 3
+R3(config-if)#zone-member security CONFROOM
+
+R3#show zone security
+zone self
+  Description: System defined zone
+
+
+zone INSIDE
+  Member Interfaces:
+    Vlan2
+
+
+zone CONFROOM
+  Member Interfaces:
+    Vlan3
+
+
+zone INTERNET
+  Member Interfaces:
+    Vlan1

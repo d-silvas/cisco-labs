@@ -1,0 +1,117 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        R1                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+hostname R1
+no ip domain lookup
+!
+interface Ethernet0
+ no ip address
+ shutdown
+!
+interface FastEthernet0
+ switchport mode access
+!
+interface FastEthernet1
+ switchport mode access
+ switchport access vlan 2
+!
+interface Vlan1
+ ip address 10.1.1.1 255.255.255.252
+!
+interface Vlan2
+ ip address 192.168.1.1 255.255.255.0
+
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        R3                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+hostname R3
+no ip domain lookup
+!
+interface FastEthernet0
+ switchport mode access
+!
+interface FastEthernet1
+ switchport mode access
+ switchport access vlan 2
+!
+interface Vlan1
+ ip address 10.2.2.1 255.255.255.252
+!
+interface Vlan2
+ ip address 192.168.3.1 255.255.255.0
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        R2                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+hostname R2
+no ip domain lookup
+!
+interface FastEthernet0/0
+ ip address 10.1.1.2 255.255.255.252
+!
+interface FastEthernet0/1
+ ip address 10.2.2.2 255.255.255.252
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ end
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        S1                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+hostname S1
+no ip domain-lookup
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 2
+ switchport mode access
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 2
+ switchport mode access
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        S3                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+hostname S3
+no ip domain-lookup
+!
+interface FastEthernet0/5
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/18
+ switchport access vlan 2
+ switchport mode access
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ end

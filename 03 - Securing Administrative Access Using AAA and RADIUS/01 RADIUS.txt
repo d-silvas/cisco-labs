@@ -1,0 +1,6 @@
+! Trying to authenticate for the first time against RADIUS (we didn't configure the ports properly in the router)
+*Apr  1 15:27:02.268: %RADIUS-4-RADIUS_DEAD: RADIUS server 192.168.1.3:1645,1646 is not responding.
+*Apr  1 15:27:02.268: %RADIUS-4-RADIUS_ALIVE: RADIUS server 192.168.1.3:1645,1646 is being marked alive.
+! Trying to enable accounting using RADIUS server
+*Apr  1 15:34:31.491: %AAAA-4-SERVNOTACPLUS: The server-group "radius" is not a tacacs+ server group. Please define "radius" as a tacacs+ server group.
+*Apr  1 15:34:31.491: %PARSE_RC-4-PRC_NON_COMPLIANCE: `aaa accounting commands 15 default start-stop group radius'

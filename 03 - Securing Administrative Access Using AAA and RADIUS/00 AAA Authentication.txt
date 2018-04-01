@@ -1,0 +1,48 @@
+R3#debug aaa authentication
+AAA Authentication debugging is on
+
+! The following two lines after logging in from PC-C (192.168.3.1)
+Apr  1 14:49:59.911: AAA/BIND(00000007): Bind i/f
+Apr  1 14:49:59.911: AAA/AUTHEN/LOGIN (00000007): Pick method list 'TELNET_LINES'
+
+! The next lines after entering privileged EXEC mode
+! Notice the status entry "PASS"
+Apr  1 14:50:17.047: AAA: parse name=tty6 idb type=-1 tty=-1
+Apr  1 14:50:17.047: AAA: name=tty6 flags=0x11 type=5 shelf=0 slot=0 adapter=0 port=6 channel=0
+Apr  1 14:50:17.047: AAA/MEMORY: create_user (0x84A77740) user='Admin01' ruser='NULL' ds0=0 port='tty6' rem_addr='192.168.3.3' authen_type=ASCII service=ENABLE priv=15 initial_task_id='0', vrf= (id=0)
+Apr  1 14:50:17.047: AAA/AUTHEN/START (2310072894): port='tty6' list='' action=LOGIN service=ENABLE
+Apr  1 14:50:17.047: AAA/AUTHEN/START (2310072894): non-console enable - default to enable password
+Apr  1 14:50:17.047: AAA/AUTHEN/START (2310072894): Method=ENABLE
+R3#
+Apr  1 14:50:17.047: AAA/AUTHEN(2310072894): Status=GETPASS
+R3#
+Apr  1 14:50:20.315: AAA/AUTHEN/CONT (2310072894): continue_login (user='(undef)')
+Apr  1 14:50:20.315: AAA/AUTHEN(2310072894): Status=GETPASS
+Apr  1 14:50:20.315: AAA/AUTHEN/CONT (2310072894): Method=ENABLE
+Apr  1 14:50:20.319: AAA/AUTHEN(2310072894): Status=PASS
+Apr  1 14:50:20.319: AAA/MEMORY: free_user (0x84A77740) user='NULL' ruser='NULL' port='tty6' rem_addr='192.168.3.3' authen_type=ASCII service=ENABLE priv=15 vrf= (id=0)
+
+! After doing 'enable' and typing a bad password - note the status "FAIL"
+Apr  1 14:54:30.015: AAA: parse name=tty6 idb type=-1 tty=-1
+Apr  1 14:54:30.015: AAA: name=tty6 flags=0x11 type=5 shelf=0 slot=0 adapter=0 port=6 channel=0
+Apr  1 14:54:30.015: AAA/MEMORY: create_user (0x84A77740) user='Admin01' ruser='NULL' ds0=0 port='tty6' rem_addr='192.168.3.3' authen_type=ASCII service=ENABLE priv=15 initial_task_id='0', vrf= (id=0)
+Apr  1 14:54:30.015: AAA/AUTHEN/START (2498355605): port='tty6' list='' action=LOGIN service=ENABLE
+Apr  1 14:54:30.015: AAA/AUTHEN/START (2498355605): non-console enable - default to enable password
+Apr  1 14:54:30.015: AAA/AUTHEN/START (2498355605): Method=ENABLE
+R3#
+Apr  1 14:54:30.015: AAA/AUTHEN(2498355605): Status=GETPASS
+R3#
+Apr  1 14:54:33.931: AAA/AUTHEN/CONT (2498355605): continue_login (user='(undef)')
+Apr  1 14:54:33.931: AAA/AUTHEN(2498355605): Status=GETPASS
+Apr  1 14:54:33.931: AAA/AUTHEN/CONT (2498355605): Method=ENABLE
+Apr  1 14:54:33.935: AAA/AUTHEN(2498355605): password incorrect
+Apr  1 14:54:33.935: AAA/AUTHEN(2498355605): Status=FAIL
+Apr  1 14:54:33.935: AAA/MEMORY: free_user (0x84A77740) user='NULL' ruser='NULL' port='tty6' rem_addr='192.168.3.3' authen_type=ASCII service=ENABLE priv=15 vrf= (id=0)
+R3#
+
+! After attempting a login with username Admin01 and a bad password
+Apr  1 14:57:07.903: AAA/BIND(00000008): Bind i/f
+Apr  1 14:57:07.903: AAA/AUTHEN/LOGIN (00000008): Pick method list 'TELNET_LINES'
+R3#
+Apr  1 14:57:18.567: AAA/AUTHEN/LOGIN (00000008): Pick method list 'TELNET_LINES'
+

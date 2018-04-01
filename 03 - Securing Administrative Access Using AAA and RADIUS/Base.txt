@@ -22,7 +22,8 @@ interface Vlan1
 !
 interface Vlan2
  ip address 192.168.1.1 255.255.255.0
-
+ routing dynamic   ! Participates in routing protocols -> Not shown in show run !?
+!
 line con 0
  exec-timeout 0 0
  logging synchronous
@@ -48,6 +49,7 @@ interface Vlan1
 !
 interface Vlan2
  ip address 192.168.3.1 255.255.255.0
+ routing dynamic
 !
 line con 0
  exec-timeout 0 0

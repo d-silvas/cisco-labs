@@ -1,0 +1,865 @@
+R1#dir flash:ipsdir
+Directory of flash:/ipsdir/
+
+    4  -rw-         255   Apr 7 2018 17:50:58 +00:00  iosips-sig-delta.xmz
+    5  -rw-       16625   Apr 7 2018 17:58:20 +00:00  iosips-sig-typedef.xmz
+    6  -rw-      143832   Apr 7 2018 17:58:34 +00:00  iosips-sig-category.xmz
+    7  -rw-         304   Apr 7 2018 17:51:00 +00:00  iosips-seap-delta.xmz
+    8  -rw-         835   Apr 7 2018 17:51:00 +00:00  iosips-seap-typedef.xmz
+    9  -rw-     1632555   Apr 7 2018 18:01:26 +00:00  iosips-sig-default.xmz
+
+128159744 bytes total (84877312 bytes free)
+
+R1#show ip ips signature count
+
+Cisco SDF release version S855.0
+Trend SDF release version V0.0
+
+Signature Micro-Engine: atomic-ip: Total Signatures 539
+      atomic-ip enabled signatures: 93
+      atomic-ip retired signatures: 518
+      atomic-ip compiled signatures: 21
+      atomic-ip obsoleted signatures: 9
+      atomic-ip disallowed signatures: 1
+
+Signature Micro-Engine: normalizer: Total Signatures 9
+      normalizer enabled signatures: 8
+      normalizer retired signatures: 1
+      normalizer compiled signatures: 8
+
+Signature Micro-Engine: service-http-v2 (INACTIVE)
+
+Signature Micro-Engine: service-http: Total Signatures 1832
+      service-http enabled signatures: 281
+      service-http retired signatures: 1776
+      service-http compiled signatures: 56
+      service-http obsoleted signatures: 1
+
+Signature Micro-Engine: service-smb-advanced: Total Signatures 76
+      service-smb-advanced enabled signatures: 16
+      service-smb-advanced retired signatures: 65
+      service-smb-advanced compiled signatures: 11
+      service-smb-advanced obsoleted signatures: 1
+      service-smb-advanced disallowed signatures: 3
+
+Signature Micro-Engine: service-msrpc: Total Signatures 37
+      service-msrpc enabled signatures: 4
+      service-msrpc retired signatures: 32
+      service-msrpc compiled signatures: 5
+      service-msrpc obsoleted signatures: 2
+
+Signature Micro-Engine: service-smtp-v1 (INACTIVE)
+
+Signature Micro-Engine: state: Total Signatures 39
+      state enabled signatures: 0
+      state retired signatures: 28
+      state compiled signatures: 11
+
+Signature Micro-Engine: service-ftp-v2 (INACTIVE)
+
+Signature Micro-Engine: service-ftp: Total Signatures 3
+      service-ftp enabled signatures: 1
+      service-ftp retired signatures: 2
+      service-ftp compiled signatures: 1
+
+Signature Micro-Engine: string-tcp: Total Signatures 3721
+      string-tcp enabled signatures: 662
+      string-tcp retired signatures: 3596
+      string-tcp compiled signatures: 125
+
+Signature Micro-Engine: service-rpc: Total Signatures 79
+      service-rpc enabled signatures: 3
+      service-rpc retired signatures: 55
+      service-rpc compiled signatures: 24
+
+Signature Micro-Engine: service-dns: Total Signatures 39
+      service-dns enabled signatures: 14
+      service-dns retired signatures: 16
+      service-dns compiled signatures: 23
+      service-dns obsoleted signatures: 1
+
+Signature Micro-Engine: string-udp: Total Signatures 75
+      string-udp enabled signatures: 0
+      string-udp retired signatures: 69
+      string-udp compiled signatures: 6
+
+Signature Micro-Engine: multi-string: Total Signatures 614
+      multi-string enabled signatures: 180
+      multi-string retired signatures: 610
+      multi-string compiled signatures: 4
+      multi-string obsoleted signatures: 5
+      multi-string disallowed signatures: 1
+
+Total Signatures: 7063
+   Total Enabled Signatures: 1262
+   Total Retired Signatures: 6768
+   Total Compiled Signatures: 295
+   Total Obsoleted Signatures: 19
+   Total Disallowed Signatures: 5
+
+R1#show ip ips all
+
+IPS Signature File Configuration Status
+    Configured Config Locations: flash:ipsdir
+    Last signature default load time: 18:03:59 UTC Apr 7 2018
+    Last signature delta load time: -none-
+    Last event action (SEAP) load time: -none-
+
+    General SEAP Config:
+    Global Deny Timeout: 3600 seconds
+    Global Overrides Status: Enabled
+    Global Filters Status: Enabled
+
+IPS Auto Update is not currently configured
+
+IPS Syslog and SDEE Notification Status
+    Event notification through syslog is enabled
+    Event notification through SDEE is enabled
+
+IPS Signature Status
+    Total Active Signatures: 295
+    Total Inactive Signatures: 6768
+
+IPS Packet Scanning and Interface Status
+    IPS Rule Configuration
+      IPS name iosips
+    IPS fail closed is disabled
+    IPS deny-action ips-interface is false
+    Obsolete tuning is disabled
+    Regex compile threshold (MB) 26
+    Interface Configuration
+      Interface FastEthernet0/1
+        Inbound IPS rule is iosips
+        Outgoing IPS rule is not set
+      Interface FastEthernet0/0
+        Inbound IPS rule is iosips
+        Outgoing IPS rule is not set
+
+IPS Category CLI Configuration:
+    Category all:
+        Retire: True
+    Category ios_ips basic:
+        Retire: False
+
+IPS License Status:             Not Required
+        Current Date:           Apr 7 2018
+        Expiration Date:        Not Available
+        Extension Date:         Not Available
+        Signatures Loaded:      Feb 27 2015     S855.0
+        Signature Package:      Feb 27 2015     S855.0
+
+R1#show ip ips configuration !(Same as show ip ips all in this case)
+
+IPS Signature File Configuration Status
+    Configured Config Locations: flash:ipsdir
+    Last signature default load time: 18:03:59 UTC Apr 7 2018
+    Last signature delta load time: 18:28:52 UTC Apr 7 2018
+    Last event action (SEAP) load time: -none-
+
+    General SEAP Config:
+    Global Deny Timeout: 3600 seconds
+    Global Overrides Status: Enabled
+    Global Filters Status: Enabled
+
+IPS Auto Update is not currently configured
+
+IPS Syslog and SDEE Notification Status
+    Event notification through syslog is enabled
+    Event notification through SDEE is enabled
+
+IPS Signature Status
+    Total Active Signatures: 296
+    Total Inactive Signatures: 6767
+
+IPS Packet Scanning and Interface Status
+    IPS Rule Configuration
+      IPS name iosips
+    IPS fail closed is disabled
+    IPS deny-action ips-interface is false
+    Obsolete tuning is disabled
+    Regex compile threshold (MB) 26
+    Interface Configuration
+      Interface FastEthernet0/1
+        Inbound IPS rule is iosips
+        Outgoing IPS rule is not set
+      Interface FastEthernet0/0
+        Inbound IPS rule is iosips
+        Outgoing IPS rule is not set
+
+IPS Category CLI Configuration:
+    Category all:
+        Retire: True
+    Category ios_ips basic:
+        Retire: False
+
+IPS License Status:             Not Required
+        Current Date:           Apr 7 2018
+        Expiration Date:        Not Available
+        Extension Date:         Not Available
+        Signatures Loaded:      Feb 27 2015     S855.0
+        Signature Package:      Feb 27 2015     S855.0
+
+R1#show ip ips interfaces
+    Interface Configuration
+      Interface FastEthernet0/1
+        Inbound IPS rule is iosips
+        Outgoing IPS rule is not set
+      Interface FastEthernet0/0
+        Inbound IPS rule is iosips
+        Outgoing IPS rule is not set
+
+R1#show ip ips statistics
+Signature statistics [process switch:fast switch]
+  signature 3041:0: packets checked [0:12] alarmed [0:12] dropped [0:0]
+  signature 3040:0: packets checked [0:12] alarmed [0:12] dropped [0:0]
+  signature 2004:0: packets checked [0:34] alarmed [0:34] dropped [0:34]
+Interfaces configured for ips 2
+Session creations since subsystem startup or last reset 2168
+Current session counts (estab/half-open/terminating) [0:130:0]
+Maxever session counts (estab/half-open/terminating) [2:271:2]
+Last session created 00:08:59
+Last statistic reset never
+TCP reassembly statistics
+  received 0 packets out-of-order; dropped 0
+  peak memory usage 0 KB; current usage: 0 KB
+  peak queue length 0
+
+R1#show ip ips signatures
+
+Cisco SDF release version S855.0
+Trend SDF release version V0.0
+
+En  - possible values are Y, Y*, N, or N*
+      Y:  signature is enabled
+      N:  enabled=false in the signature definition file
+      *:  retired=true in the signature definition file
+Cmp - possible values are Y, Ni, Nr, Nf, or No
+      Y:  signature is compiled
+      Ni: signature not compiled due to invalid or missing parameters
+      Nr: signature not compiled because it is retired
+      Nf: signature compile failed
+      No: signature is obsoleted
+      Nd: signature is disallowed
+Action=(A)lert, (D)eny, (R)eset, Deny-(H)ost, Deny-(F)low
+Trait=alert-traits             EC=event-count          AI=alert-interval
+GST=global-summary-threshold   SI=summary-interval     SM=summary-mode
+SW=swap-attacker-victim        SFR=sig-fidelity-rating Rel=release
+
+
+Signature Micro-Engine: atomic-ip: Total Signatures 539
+      atomic-ip enabled signatures: 94
+      atomic-ip retired signatures: 517
+      atomic-ip compiled signatures: 22
+      atomic-ip obsoleted signatures: 9
+      atomic-ip disallowed signatures: 1
+ SigID:SubID En  Cmp   Action Sev   Trait   EC   AI   GST   SI  SM SW SFR Rel
+ ----------- --  ----  ------ ---   -----  ---- ---- -----  --- -- -- --- ---
+  1006:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S756
+  3300:0     N   Y     A     HIGH     0     1    0    200   30  FA  N 100 S630
+  1004:0     N*  Nr    A     HIGH     0     1    0    200   30  FA  N 100 S592
+  4607:9     N   Y     A     HIGH     0     1    0      0    0  FA  N 100 S591
+  4607:8     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S591
+  4607:7     N   Y     A     HIGH     0     1    0      0    0  FA  N 100 S591
+  4607:6     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S591
+  9433:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S551
+  9430:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S551
+  9418:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S551
+  9403:2     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S551
+  4703:0     Y*  Nr    A     HIGH     0     1    0      0 3600  FA  N 100 S509
+  1102:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S473
+  1108:0     N   Y     A     HIGH     0     1    0      0   30  FA  N 100 S452
+ 50000:2     N*  No    A     HIGH     0     1    0      0  300  FA  N 100 S440
+ 50000:1     N*  No    A     HIGH     0     1    0      0  300  FA  N 100 S440
+ 50000:0     N*  No    A     HIGH     0     1    0      0  300  FA  N 100 S440
+  4058:2     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S433
+ 18217:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 100 S429
+  4608:5     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S177
+  4608:4     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S177
+  4608:3     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S177
+  4607:5     Y   Y     A     HIGH     0     1    0      0    0  FA  N 100 S177
+  3043:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S2
+  3042:0     N*  Nr    A     HIGH     0     1    0    200   30  FA  N 100 S2
+  3041:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S2
+  3040:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S2
+  3039:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S2
+  3038:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S2
+  1104:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S2
+  4619:0     N   Y     A      MED     0     1    0    200   30  FA  N 100 S798
+  5689:0     N*  Nr    A      MED     0    10    0      0    0  FA  N 100 S507
+ 24199:1     Y*  Nr    A      MED     0     1    0      0  120  FA  N 100 S477
+ 24199:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 100 S477
+  3123:0     N*  Nr    A      MED     0     1    0    200   30  FA  N 100 S298
+  5698:0     N*  Nr    A      MED     0   200    0      0    0  FA  N 100 S256
+  4600:0     N*  Nr    A      MED     0     1    0    200   30  FA  N 100 S256
+  5534:2     N*  Nr    A      LOW     0     1    0      0    0  FA  N 100 S663
+  5534:1     N*  Nr    A      LOW     0     1    0      0    0  FA  N 100 S663
+  5534:0     N*  Nr    A      LOW     0     1    0      0    0  FA  N 100 S613
+  3301:0     N*  Nr    A      LOW     0     1    0    200   30  FA  N 100 S591
+  4050:0     Y*  Nr    A      LOW     0     1    0    200   30  FA  N 100 S1
+  1001:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S761
+  2004:0     Y   Y     ADR   INFO     0     1    0    200   30  FA  N 100 S666
+  2000:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S666
+ 11205:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S593
+  2011:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2010:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2009:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2008:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2007:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2006:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2005:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2003:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2002:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2001:1     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  2001:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  1107:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  1007:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S592
+  5540:0     N*  Nr    A     INFO     0     1    0      0    0  FA  N 100 S591
+  5539:0     N*  Nr    A     INFO     0     1    0      0    0  FA  N 100 S591
+  5538:0     N*  Nr    A     INFO     0     1    0      0    0  FA  N 100 S591
+  5537:0     N*  Nr    A     INFO     0     1    0      0    0  FA  N 100 S591
+  5530:0     N*  Nr    A     INFO     0     1    0      0    0  FA  N 100 S591
+  4605:1     N*  Nr    A     INFO     0     1    0      0    0  FA  N 100 S591
+  4604:1     N*  Nr    A     INFO     0     1    0      0    0  FA  N 100 S591
+  2151:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S591
+  2150:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S591
+  2001:2     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S472
+  2012:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S452
+ 15453:0     N*  Nr    A     INFO     0     1    0      0    0  FA  N 100 S395
+  2154:0     N*  Nr    A     INFO     0     1    0      0    0  FA  N 100 S251
+  1005:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S2
+  1003:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S2
+  1002:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 100 S2
+ 20363:0     Y*  Nr    A     HIGH     0     3    0      0    0  FA  N 95  S801
+  5485:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 95  S801
+  5684:2     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 95  S731
+  6226:0     N*  Nr    A     HIGH     0     1    0      0   60  FA  N 95  S556
+ 33839:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 95  S548
+ 17401:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 95  S419
+ 17397:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 95  S408
+ 17269:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 95  S408
+  6517:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 95  S395
+ 27219:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 95  S779
+  6261:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 95  S617
+ 18098:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 95  S428
+  3025:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S849
+  4977:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S848
+  4818:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S839
+  4689:2     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S825
+  4433:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S823
+ 32379:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S802
+ 23779:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S801
+ 18639:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S801
+ 17457:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S801
+ 24159:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S778
+ 24140:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S778
+ 24120:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S778
+ 24119:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S778
+ 20644:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S772
+ 20643:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S772
+ 15913:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S767
+  1855:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S767
+ 15653:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S758
+  1040:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  Y 90  S751
+  2667:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S736
+  2366:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S725
+  1851:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S703
+  1578:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S689
+  1382:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S681
+ 36790:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S669
+  2158:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S648
+ 17238:1     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S639
+  6178:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S624
+  6755:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S619
+  6412:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S619
+  6782:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S618
+  6781:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S618
+  5766:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S618
+  6274:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S617
+  6224:0     N*  Nr    A     HIGH     0   179  100      0    0  FA  N 90  S617
+ 37186:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S609
+ 35826:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S609
+ 33120:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S609
+ 24939:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S609
+ 37126:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S599
+ 34886:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S593
+  6260:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S586
+ 29859:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S566
+ 35125:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S558
+ 29739:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S550
+  6721:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S549
+  6433:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S538
+ 25359:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 90  S535
+ 30820:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S530
+ 15314:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S520
+ 20599:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S513
+  6954:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S509
+ 24799:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S479
+ 24781:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S479
+ 19621:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S465
+ 17141:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S458
+ 17139:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S458
+ 20499:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S455
+ 20440:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S455
+  6087:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S451
+ 20879:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S448
+ 19859:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S446
+ 19439:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S446
+ 20439:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S442
+  6076:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S435
+ 20541:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S433
+  6537:1     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S428
+  6537:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S428
+  5850:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S410
+  5850:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S410
+  6244:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S404
+  5963:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S404
+  6238:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 90  S396
+ 15393:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 90  S387
+ 28139:0     Y*  Nr    A      MED     0     1    0      0  300  FA  N 90  S803
+ 27000:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 90  S803
+ 25962:0     Y*  Nr    A      MED     0     1    0      0  300  FA  N 90  S803
+ 31899:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 90  S802
+ 16755:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 90  S801
+  1090:1     N*  Nr    A      MED     0     1    0      0  300  FA  N 90  S782
+ 20479:1     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S772
+  1090:2     Y*  Nr    A      MED     0     1    0      0  300  FA  N 90  S676
+  1090:0     N*  No    A      MED     0     1    0      0  300  FA  N 90  S676
+  1492:1     Y*  Nr    A      MED     0     1    0      0  120  FA  N 90  S674
+  1082:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S639
+  6999:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 90  S620
+ 35025:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S604
+ 38247:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 90  S580
+  5512:1     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S543
+ 24780:0     Y*  Nr    A      MED     0     1    0      0  300  FA  N 90  S479
+  6515:0     Y*  Nr    A      MED     0     1    0      0    0  FA  N 90  S471
+  5684:6     Y*  Nr    A      MED     0     1    0      0    0  FA  N 90  S466
+ 18999:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S433
+ 18077:1     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S418
+  6140:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S404
+  6173:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S397
+  6225:1     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S394
+  6225:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 90  S394
+  4620:0     N   Y     A     INFO     0     3    0      0    0  FA  N 90  S633
+ 15255:0     N*  Nr    A     INFO     0     1    0      0    0  FA  N 90  S593
+  1954:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S841
+  4579:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S827
+  4698:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S825
+  4517:2     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S823
+  4517:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S823
+  4517:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S823
+  4179:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S806
+  5858:4     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S801
+  4286:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S800
+  1381:1     N*  Nd    A     HIGH     0     1    0      0    0  FA  N 85  S795
+  4261:2     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S793
+  3412:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S763
+  2901:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S752
+  2483:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S745
+ 35327:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S742
+  2487:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S731
+ 26379:0     N*  No    A     HIGH     0     1    0      0  120  FA  N 85  S703
+  1550:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S699
+ 41986:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S669
+  5543:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S648
+  4704:1     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S639
+  1063:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S639
+  1127:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S638
+ 15153:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S628
+  5514:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S617
+  5514:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S617
+ 33480:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S613
+ 33121:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S609
+ 40106:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S607
+ 25999:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S598
+ 26479:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S597
+ 35009:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S593
+  6203:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S593
+  4704:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S591
+ 30101:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S566
+ 35327:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S558
+  9412:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S551
+  9401:2     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S551
+ 26619:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S543
+  6542:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S538
+ 28779:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S520
+  5507:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S520
+  6546:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S464
+ 19420:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S449
+ 19000:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S433
+ 19840:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 85  S425
+  3331:3     N*  Nr    A     HIGH     0    35    0      0    0  FA  N 85  S423
+  5894:1     N*  Nr    A     HIGH     0   300    5      0    0  FA  N 85  S360
+  6518:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 85  S339
+  6505:1     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S806
+ 27599:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 85  S803
+  4611:1     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S798
+ 30179:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 85  S796
+  4261:3     Y*  Nr    A      MED     0     1    0      0    0  FA  N 85  S793
+  4261:1     Y*  Nr    A      MED     0     1    0      0    0  FA  N 85  S793
+  4261:0     Y*  Nr    A      MED     0     1    0      0    0  FA  N 85  S793
+  3864:0     Y*  Nr    A      MED     0     1    0      0  300  FA  N 85  S781
+  2769:0     Y*  Nr    A      MED     0   100    0      0    0  FA  N 85  S741
+  1484:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S739
+  1420:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S738
+  1419:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S738
+  1119:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S712
+  5739:0     N*  No    A      MED     0     3   60      0    0  FA  Y 85  S663
+  6522:0     N*  Nr    A      MED     0    10   60      0    0  FA  Y 85  S654
+  1038:0     N*  Nr    A      MED     0   300    0      0  120  FA  N 85  S640
+  5508:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S624
+ 30059:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 85  S593
+ 24600:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 85  S593
+ 20481:1     N*  Nr    A      MED     0     1    0      0  120  FA  N 85  S593
+ 15816:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S593
+  6009:0     N*  Nr    A      MED     0   200    2      0    0  FA  N 85  S593
+  5512:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S591
+  5506:1     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S591
+  5506:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S591
+  4615:3     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S591
+  4615:2     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S591
+  4609:1     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S591
+  4062:0     N*  Nr    A      MED     0     1    0    200   30  FA  N 85  S591
+  3143:4     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S591
+  3143:3     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S591
+  9583:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S551
+  5506:2     N*  Nr    A      MED     0     1    0      0  120  FA  N 85  S497
+ 24279:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 85  S470
+ 24219:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 85  S470
+  5835:0     N*  Nr    A      MED     0  4000    2      0    0  FA  N 85  S469
+  5835:1     N*  Nr    A      MED     0  4000    2      0    0  FA  N 85  S449
+  6508:2     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S439
+  2157:2     N   Y     A      MED     0  1000    0    200   30  FA  N 85  S423
+  2157:1     N   Y     A      MED     0  1000    0    200   30  FA  N 85  S423
+  2157:0     N   Y     A      MED     0  1000    0    200   30  FA  N 85  S423
+  5430:2     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S415
+ 17781:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 85  S405
+  5825:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 85  S397
+  6177:0     Y*  Nr    A      MED     0     1    0      0    0  FA  N 85  S339
+  6506:1     Y*  Nr    A      MED     0     1    0      0    0  FA  N 85  S177
+  4052:2     N*  Nr    A      LOW     0     1    0    200   30  FA  N 85  S613
+  4052:1     N*  Nr    A      LOW     0     1    0    200   30  FA  N 85  S613
+  5535:0     N*  Nr    A      LOW     0     1    0      0    0  FA  N 85  S591
+  4612:1     N*  Nr    A      LOW     0     1    0      0    0  FA  N 85  S591
+  4610:1     N*  Nr    A      LOW     0     1    0      0    0  FA  N 85  S591
+  5511:0     N*  Nr    A      LOW     0     1    0      0    0  FA  N 85  S507
+  6256:0     N*  Nr    A     INFO     0     3    0    200   30  FA  N 85  S593
+  9038:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 85  S256
+  9037:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 85  S256
+  9036:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 85  S256
+  9033:0     N*  Nr    A     INFO     0     1    0    200   30  FA  N 85  S256
+  4526:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 80  S823
+  4489:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 80  S823
+  4414:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 80  S808
+ 24359:0     Y*  Nr    A     HIGH     0     1    0      0  120  FA  N 80  S801
+  6131:9     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 80  S705
+  1091:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 80  S692
+  6523:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 80  S594
+ 15016:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 80  S593
+  5831:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 80  S439
+  6013:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 80  S399
+  5899:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 80  S360
+  4957:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S854
+  4865:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S854
+  4756:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S841
+  4014:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S803
+  2065:1     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S728
+  2033:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S713
+  6520:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S593
+  5518:0     N*  Nr    A      MED     0    24   15      0    0  FA  N 80  S591
+  4602:4     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S591
+  4602:3     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S591
+ 33299:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 80  S546
+ 24760:0     Y*  Nr    A      MED     0     1    0      0  120  FA  N 80  S479
+  5684:3     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S464
+  5684:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S464
+  6221:0     N*  Nr    A      MED     0     1    0      0  120  FA  N 80  S416
+  5912:0     N*  Nr    A      MED     0  2000    2      0    0  FA  N 80  S403
+  5853:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 80  S403
+  6518:1     Y*  Nr    A      MED     0     1    0      0    0  FA  N 80  S345
+  6257:0     Y*  Nr    A      MED     0     1    0      0    0  FA  N 80  S332
+  4187:4     N*  Nr    A      LOW     0     1    0      0  300  FA  N 80  S788
+  3492:3     N*  Nr    A      LOW     0     1    0      0    0  FA  N 80  S763
+  3492:2     N*  Nr    A      LOW     0     1    0      0    0  FA  N 80  S763
+  3492:1     N*  Nr    A      LOW     0     1    0      0    0  FA  N 80  S763
+  3492:0     N*  Nr    A      LOW     0     1    0      0    0  FA  N 80  S763
+  1635:0     N*  Nr    A      LOW     0     1    0      0    0  FA  N 80  S680
+ 20361:0     N*  Nr    A      LOW     0     1    0      0 6000  FA  N 80  S630
+  6545:0     N*  Nr    A      LOW     0    10    3      0    0  FA  N 80  S630
+  6466:0     N*  Nr    A      LOW     0     1    0      0    0  FA  N 80  S397
+  4187:3     N*  Nr    A     INFO     0     6    2      0  300  FA  N 80  S787
+  4265:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S815
+  4102:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S815
+  4606:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S798
+  3879:0     Y*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S781
+  6146:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S778
+  4158:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S748
+ 25460:0     N*  Nr    A     HIGH     0     1    0      0  120  FA  N 75  S745
+  5505:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S633
+  5681:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S616
+  5513:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S599
+  5513:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S591
+  5509:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S591
+  5471:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S520
+  3327:5     N*  No    A     HIGH     0     1    0      0    0  FA  N 75  S520
+  3327:3     N*  No    A     HIGH     0     1    0    200   30  FA  N 75  S520
+  3327:2     N*  No    A     HIGH     0     1    0    200   30  FA  N 75  S520
+  5544:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S512
+  5533:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S512
+  5532:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S512
+  5222:0     N*  Nr    A     HIGH     0   120   60    960   30  FA  N 75  S512
+  5510:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S507
+  5504:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S458
+  3331:4     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S423
+  4614:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S401
+  4614:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S396
+  5505:0     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 75  S394
+  4668:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S829
+  3520:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S829
+  3518:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S829
+  6187:0     Y*  Nr    A      MED     0    20    2      0    0  FA  N 75  S801
+  1772:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S745
+  1771:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S745
+  1770:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S745
+  1769:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S745
+  1768:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S712
+  1767:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S712
+  1766:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S712
+  1765:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S712
+  1764:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S712
+  1763:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S712
+  1762:0     N*  Nr    A      MED     0     3   60      0    0  FA  N 75  S703
+  1760:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S687
+  5529:3     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S663
+  1298:0     Y*  Nr    A      MED     0     5    0      0  120  FA  N 75  S660
+  6179:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S617
+  5546:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S594
+  6184:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S593
+  1109:3     N*  Nr    A      MED     0     1    0    200   30  FA  N 75  S592
+  1109:2     N*  Nr    A      MED     0     1    0    200   30  FA  N 75  S592
+  1109:1     N*  Nr    A      MED     0     1    0    200   30  FA  N 75  S592
+  1109:0     N*  Nr    A      MED     0     1    0    200   30  FA  N 75  S592
+  3357:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S591
+  3051:1     N*  Nr    A      MED     0  1000    0    200   30  FA  N 75  S591
+  3051:0     N*  Nr    A      MED     0  1000    0    200   30  FA  N 75  S591
+  5529:2     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S512
+  5529:1     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S512
+  5529:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S512
+  5177:1     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S512
+  5679:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S507
+  6108:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S388
+  6764:1     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S314
+  6764:0     N*  Nr    A      MED     0     1    0      0    0  FA  N 75  S314
+  9023:0     N*  Nr    A      MED     0     1    0    200   30  FA  N 75  S256
+ 11021:0     N*  Nr    A      LOW     0    10    0    200   30  FA  N 75  S624
+  5536:0     N*  Nr    A      LOW     0     1    0      0  120  FA  N 75  S624
+  4051:1     Y*  Nr    A      LOW     0     1    0    200   30  FA  N 75  S617
+  6067:0     N*  Nr    A      LOW     0     1    0      0    0  FA  N 75  S594
+  4068:0     N*  Nr    A      LOW     0   100    5      0    0  FA  N 75  S591
+  2202:0     N*  Nr    A      LOW     0   100    0    200    5  FA  N 75  S591
+  2201:0     N*  Nr    A      LOW     0     1    0    200   30  FA  N 75  S591
+  4051:3     N*  Nr    A      LOW     0     1    0    200   30  FA  N 75  S510
+  4051:2     N*  Nr    A      LOW     0     1    0    200   30  FA  N 75  S510
+
+R1#show ip ips signatures detail
+
+Cisco SDF release version S855.0
+Trend SDF release version V0.0
+
+En  - possible values are Y, Y*, N, or N*
+      Y:  signature is enabled
+      N:  enabled=false in the signature definition file
+      *:  retired=true in the signature definition file
+Cmp - possible values are Y, Ni, Nr, Nf, or No
+      Y:  signature is compiled
+      Ni: signature not compiled due to invalid or missing parameters
+      Nr: signature not compiled because it is retired
+      Nf: signature compile failed
+      No: signature is obsoleted
+      Nd: signature is disallowed
+Action=(A)lert, (D)eny, (R)eset, Deny-(H)ost, Deny-(F)low
+Trait=alert-traits             EC=event-count          AI=alert-interval
+GST=global-summary-threshold   SI=summary-interval     SM=summary-mode
+SW=swap-attacker-victim        SFR=sig-fidelity-rating Rel=release
+
+
+Signature Micro-Engine: atomic-ip: Total Signatures 539
+      atomic-ip enabled signatures: 94
+      atomic-ip retired signatures: 517
+      atomic-ip compiled signatures: 22
+      atomic-ip obsoleted signatures: 9
+      atomic-ip disallowed signatures: 1
+ SigID:SubID En  Cmp   Action Sev   Trait   EC   AI   GST   SI  SM SW SFR Rel
+ ----------- --  ----  ------ ---   -----  ---- ---- -----  --- -- -- --- ---
+  1006:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S756
+      sig-name: IP options-Strict Source Route
+      sig-string-info: Option 9 Value 137
+      sig-comment: Sig Comment
+      sig-type: Anomaly
+      Engine atomic-ip params:
+           fragment-status :
+           ip-option : 137
+           ip-option-inspection : true
+  3300:0     N   Y     A     HIGH     0     1    0    200   30  FA  N 100 S630
+      sig-name: NetBIOS OOB Data
+      sig-string-info: NetBIOS OOB Data
+      sig-comment: Sig Comment
+      sig-type: Other
+      Engine atomic-ip params:
+           dst-port : 139-139
+           fragment-status :
+           l4-protocol : tcp
+           tcp-flags : urg
+           tcp-mask : urg
+  1004:0     N*  Nr    A     HIGH     0     1    0    200   30  FA  N 100 S592
+      sig-name: IP options-Loose Source Route
+      sig-string-info: My Sig Info
+      sig-comment: Sig Comment
+      sig-type: Anomaly
+      Engine atomic-ip params:
+           fragment-status :
+           ip-option : 131
+           ip-option-inspection : true
+  4607:9     N   Y     A     HIGH     0     1    0      0    0  FA  N 100 S591
+      sig-name: Deep Throat Response
+      sig-string-info: My Mouth is Open
+      sig-comment: Sig Comment
+      sig-type: Vulnerability
+      Engine atomic-ip params:
+           regex-string : [Mm][Yy][ ][Mm][Oo][Uu][Tt][Hh][ ][Ii][Ss][ ][Oo][Pp][Ee][Nn]
+           dst-port : 60000
+           fragment-status :
+           l4-protocol : udp
+           payload-inspection : true
+  4607:8     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S591
+      sig-name: Deep Throat Response
+      sig-string-info: My Mouth is Open
+      sig-comment: Sig Comment
+      sig-type: Vulnerability
+      Engine atomic-ip params:
+           regex-string : [Mm][Yy][ ][Mm][Oo][Uu][Tt][Hh][ ][Ii][Ss][ ][Oo][Pp][Ee][Nn]
+           dst-port : 6771
+           fragment-status :
+           l4-protocol : udp
+           payload-inspection : true
+  4607:7     N   Y     A     HIGH     0     1    0      0    0  FA  N 100 S591
+      sig-name: Deep Throat Response
+      sig-string-info: My Mouth is Open
+      sig-comment: Sig Comment
+      sig-type: Vulnerability
+      Engine atomic-ip params:
+           regex-string : [Mm][Yy][ ][Mm][Oo][Uu][Tt][Hh][ ][Ii][Ss][ ][Oo][Pp][Ee][Nn]
+           dst-port : 3150
+           fragment-status :
+           l4-protocol : udp
+           payload-inspection : true
+  4607:6     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S591
+      sig-name: Deep Throat Response
+      sig-string-info: My Mouth is Open
+      sig-comment: Sig Comment
+      sig-type: Vulnerability
+      Engine atomic-ip params:
+           regex-string : [Mm][Yy][ ][Mm][Oo][Uu][Tt][Hh][ ][Ii][Ss][ ][Oo][Pp][Ee][Nn]
+           dst-port : 2140
+           fragment-status :
+           l4-protocol : udp
+           payload-inspection : true
+  9433:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S551
+      sig-name: Back Door Blasitix
+      sig-string-info: Server Is Online
+      sig-comment: Sig Comment
+      sig-type: Exploit
+      Engine atomic-ip params:
+           regex-string : [Ss][Ee][Rr][Vv][Ee][Rr][ ][Ii][Ss][ ][Oo][Nn][Ll][Ii][Nn][Ee]
+           fragment-status :
+           l4-protocol : udp
+           payload-inspection : true
+           src-port : 1183-1183
+  9430:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S551
+      sig-name: Back Door Alvgus
+      sig-string-info: stAlvgus's Trojan Server
+      sig-comment: Sig Comment
+      sig-type: Exploit
+      Engine atomic-ip params:
+           regex-string : [Ss][Tt][Aa][Ll][Vv][Gg][Uu][Ss][\x27][sS][ ][Tt][Rr][Oo][Jj][Aa][Nn][ ][Ss][Ee][Rr][Vv][Ee][Rr]
+           fragment-status :
+           l4-protocol : udp
+           payload-inspection : true
+           src-port : 27184-27184
+  9418:1     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S551
+      sig-name: Back Door Revenger
+      sig-string-info: Connected To The Revenger
+      sig-comment: Sig Comment
+      sig-type: Exploit
+      Engine atomic-ip params:
+           regex-string : [ ][Cc][Oo][Nn][Nn][Ee][Cc][Tt][Ee][Dd][ ][Tt][Oo][ ][Tt][Hh][Ee][ ][Rr][Ee][Vv][Ee][Nn][Gg][Ee][Rr]
+           fragment-status :
+           l4-protocol : udp
+           payload-inspection : true
+           src-port : 58850-58850
+  9403:2     N*  Nr    A     HIGH     0     1    0      0    0  FA  N 100 S551
+      sig-name: Back Door Xanadu
+      sig-string-info: server_setup
+      sig-comment: Sig Comment
+      sig-type: Exploit
+      Engine atomic-ip params:
+           regex-string : [Ss][Ee][Rr][Vv][Ee][Rr][\x5f][Ss][Ee][Tt][Uu][Pp][\x00][\x09][\x00]
+           fragment-status :
+           l4-protocol : udp
+           payload-inspection : true
+           src-port : 31557-31557
+  4703:0     Y*  Nr    A     HIGH     0     1    0      0 3600  FA  N 100 S509
+      sig-name: MSSQL Resolution Service Stack Overflow
+      sig-string-info: MSSQL Resolution Service Stack Overflow
+      sig-comment: Sig Comment
+      sig-type: Vulnerability
+      Engine atomic-ip params:
+           regex-string : \x04[^\x00\x3A\x0A\x0D\x2F\x5C]+
+           dst-port : 1434
+           fragment-status :
+           l4-protocol : udp
+           max-match-offset : 17
+           min-match-length : 17
+           payload-inspection : true
+  1102:0     Y   Y     A     HIGH     0     1    0    200   30  FA  N 100 S473
+      sig-name: Impossible IP Packet
+      sig-string-info: My Sig Info
+      sig-comment: Sig Comment
+      sig-type: Anomaly
+      Engine atomic-ip params:
+           fragment-status :
+           ip-addr-options : true
+           src-ip-eq-dst-ip : true
+  1108:0     N   Y     A     HIGH     0     1    0      0   30  FA  N 100 S452
+      sig-name: IP Packet with Proto 11
+      sig-string-info: IP Proto 11
+      sig-comment: Sig Comment
+      sig-type: Anomaly
+      Engine atomic-ip params:
+           fragment-status :
+           other-ip-protocol-id : 11-11
+ 50000:2     N*  No    A     HIGH     0     1    0      0  300  FA  N 100 S440
+      sig-name: Outbreak Prevention Signature
+      sig-string-info: TCP ICMP Signature
+      sig-comment: Sig Comment
+      sig-type: Anomaly
+      Engine atomic-ip params:
+           fragment-status :
+           l4-protocol : icmp
+ 50000:1     N*  No    A     HIGH     0     1    0      0  300  FA  N 100 S440
+      sig-name: Outbreak Prevention Signature
+      sig-string-info: UDP ACL Signature
+      sig-comment: Sig Comment
+      sig-type: Anomaly
+      Engine atomic-ip params:
+           fragment-status :
+           l4-protocol : udp
+ 50000:0     N*  No    A     HIGH     0     1    0      0  300  FA  N 100 S440
+      sig-name: Outbreak Prevention Signature
+      sig-string-info: TCP ACL Signature
+      sig-comment: Sig Comment
+      sig-type: Anomaly
+      Engine atomic-ip params:
+           fragment-status :
+           l4-protocol : tcp
+           tcp-flags : syn
+           tcp-mask : ack|syn|fin

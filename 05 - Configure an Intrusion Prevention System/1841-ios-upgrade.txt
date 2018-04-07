@@ -1,0 +1,41 @@
+Router#format flash:
+Format operation may take a while. Continue? [confirm]
+Format operation will destroy all data in "flash:".  Continue? [confirm]
+Format: Drive communication & 1st Sector Write OK...
+Writing Monlib sectors.
+.......................................................................................................................
+Monlib write complete
+.
+Format: All system sectors written. OK...
+
+Format: Total sectors in formatted partition: 250721
+Format: Total bytes in formatted partition: 128369152
+Format: Operation completed successfully.
+
+Format of flash complete
+Router#show flash:
+No files on device
+
+128159744 bytes available (0 bytes used)
+
+
+
+
+Router#copy tftp flash:
+Address or name of remote host []? 192.168.3.3
+Source filename []? c1841-advsecurityk9-mz.151-4.M10.bin
+Destination filename [c1841-advsecurityk9-mz.151-4.M10.bin]?
+Accessing tftp://192.168.3.3/c1841-advsecurityk9-mz.151-4.M10.bin...
+Loading c1841-advsecurityk9-mz.151-4.M10.bin from 192.168.3.3 (via FastEthernet0/0): !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[OK - 41456608 bytes]
+
+41456608 bytes copied in 186.652 secs (222106 bytes/sec)
+Router#
+Router#show flash
+-#- --length-- -----date/time------ path
+1     41456608 Apr 7 2018 14:09:24 +00:00 c1841-advsecurityk9-mz.151-4.M10.bin
+
+86700032 bytes available (41459712 bytes used)
+
+router#reload
+

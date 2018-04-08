@@ -1,0 +1,566 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        R1                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+R1#show run
+Building configuration...
+
+Current configuration : 1558 bytes
+!
+! Last configuration change at 18:34:28 UTC Sun Apr 8 2018
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+dot11 syslog
+ip source-route
+!
+!
+ip dhcp excluded-address 192.168.1.1 192.168.1.4
+ip dhcp excluded-address 192.168.20.1
+!
+ip dhcp pool CCNAS
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+!
+ip dhcp pool 20Users
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1
+!
+!
+!
+ip cef
+no ip domain lookup
+!
+multilink bundle-name authenticated
+!
+crypto pki token default removal timeout 0
+!
+!
+!
+!
+license udi pid CISCO1841 sn FCZ103711N6
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.1
+ encapsulation dot1Q 1 native
+ ip address 192.168.1.1 255.255.255.0
+!
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+!
+interface FastEthernet0/0.99
+ encapsulation dot1Q 99
+ ip address 192.168.99.1 255.255.255.0
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface ATM0/0/0
+ no ip address
+ shutdown
+ no atm ilmi-keepalive
+!
+interface Serial0/1/0
+ no ip address
+ shutdown
+ clock rate 2000000
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        S1                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+S1#show run
+Building configuration...
+
+Current configuration : 3818 bytes
+!
+! Last configuration change at 03:12:13 UTC Mon Jan 2 2006
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname S1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+username admin privilege 15 secret 9 $9$1SYCRUdt0CNEQn$dkvrGVyKK0mrfGRKejvlpDeNKpz.g1yHW8YcVBCvJH2
+no aaa new-model
+switch 1 provision ws-c2960s-48fpd-l
+!
+!
+ip dhcp snooping vlan 1,20
+ip dhcp snooping
+no ip domain-lookup
+ip domain-name ccnasecurity.com
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+spanning-tree vlan 1 priority 0
+!
+!
+!
+!
+!
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+ip ssh time-out 90
+ip ssh authentication-retries 2
+ip ssh version 2
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ switchport trunk native vlan 99
+ switchport mode trunk
+ switchport nonegotiate
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/2
+ shutdown
+!
+interface GigabitEthernet1/0/3
+ shutdown
+!
+interface GigabitEthernet1/0/4
+ shutdown
+!
+interface GigabitEthernet1/0/5
+ description CONNECTS TO DHCP SERVER
+ switchport trunk native vlan 99
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 20
+ switchport mode access
+ switchport protected
+ switchport port-security mac-address 3c97.0e1c.9c53
+ switchport port-security
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ ip dhcp snooping limit rate 5
+!
+interface GigabitEthernet1/0/7
+ switchport protected
+ shutdown
+!
+interface GigabitEthernet1/0/8
+ shutdown
+!
+interface GigabitEthernet1/0/9
+ shutdown
+!
+interface GigabitEthernet1/0/10
+ shutdown
+!
+interface GigabitEthernet1/0/11
+ shutdown
+!
+interface GigabitEthernet1/0/12
+ shutdown
+!
+interface GigabitEthernet1/0/13
+ shutdown
+!
+interface GigabitEthernet1/0/14
+ shutdown
+!
+interface GigabitEthernet1/0/15
+ shutdown
+!
+interface GigabitEthernet1/0/16
+ shutdown
+!
+interface GigabitEthernet1/0/17
+ shutdown
+!
+interface GigabitEthernet1/0/18
+ shutdown
+!
+interface GigabitEthernet1/0/19
+ shutdown
+!
+interface GigabitEthernet1/0/20
+ shutdown
+!
+interface GigabitEthernet1/0/21
+ shutdown
+!
+interface GigabitEthernet1/0/22
+ shutdown
+!
+interface GigabitEthernet1/0/23
+ shutdown
+!
+interface GigabitEthernet1/0/24
+ shutdown
+!
+interface GigabitEthernet1/0/25
+ shutdown
+!
+interface GigabitEthernet1/0/26
+ shutdown
+!
+interface GigabitEthernet1/0/27
+ shutdown
+!
+interface GigabitEthernet1/0/28
+ shutdown
+!
+interface GigabitEthernet1/0/29
+ shutdown
+!
+interface GigabitEthernet1/0/30
+ shutdown
+!
+interface GigabitEthernet1/0/31
+ shutdown
+!
+interface GigabitEthernet1/0/32
+ shutdown
+!
+interface GigabitEthernet1/0/33
+ shutdown
+!
+interface GigabitEthernet1/0/34
+ shutdown
+!
+interface GigabitEthernet1/0/35
+ shutdown
+!
+interface GigabitEthernet1/0/36
+ shutdown
+!
+interface GigabitEthernet1/0/37
+ shutdown
+!
+interface GigabitEthernet1/0/38
+ shutdown
+!
+interface GigabitEthernet1/0/39
+ shutdown
+!
+interface GigabitEthernet1/0/40
+ shutdown
+!
+interface GigabitEthernet1/0/41
+ shutdown
+!
+interface GigabitEthernet1/0/42
+ shutdown
+!
+interface GigabitEthernet1/0/43
+ shutdown
+!
+interface GigabitEthernet1/0/44
+ shutdown
+!
+interface GigabitEthernet1/0/45
+ shutdown
+!
+interface GigabitEthernet1/0/46
+ shutdown
+!
+interface GigabitEthernet1/0/47
+ shutdown
+!
+interface GigabitEthernet1/0/48
+ shutdown
+!
+interface GigabitEthernet1/0/49
+!
+interface GigabitEthernet1/0/50
+!
+interface TenGigabitEthernet1/0/1
+ shutdown
+!
+interface TenGigabitEthernet1/0/2
+ shutdown
+!
+interface Vlan1
+ ip address 192.168.1.2 255.255.255.0
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+vstack
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ login local
+ transport input ssh
+line vty 5 15
+ login
+ transport input none
+!
+end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        S2                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+S2#show run
+Building configuration...
+
+Current configuration : 3108 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname S2
+!
+enable secret 5 $1$bm6F$RMQd.w1o9K2tE4vMW.OxN0
+!
+username admin privilege 15 secret 5 $1$YH1B$VssnyMOcRIkFUNC5bq48f.
+!
+!
+no aaa new-model
+no ip domain-lookup
+ip domain-name ccnasecurity.com
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree loopguard default
+spanning-tree portfast default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+ip ssh time-out 90
+ip ssh authentication-retries 2
+ip ssh version 2
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface FastEthernet0/2
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/3
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/4
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/5
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/6
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/7
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/8
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/9
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/10
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/11
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/12
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/13
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/14
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/15
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/16
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/17
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/18
+ description PORT SECURITY CONFIGURED FOR VOIP
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 120
+!
+interface FastEthernet0/19
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/20
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/21
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/22
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/23
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/24
+ switchport mode dynamic desirable
+ shutdown
+!
+interface GigabitEthernet0/1
+ switchport mode dynamic desirable
+ shutdown
+!
+interface GigabitEthernet0/2
+ switchport mode dynamic desirable
+ shutdown
+!
+interface Vlan1
+ ip address 192.168.1.3 255.255.255.0
+!
+ip classless
+no ip http server
+no ip http secure-server
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ login local
+ transport input ssh
+line vty 5 15
+ login
+ transport input none
+!
+end

@@ -1,5 +1,6 @@
 > 1841 Filesystem
 https://www.cisco.com/c/en/us/td/docs/routers/access/1800/1841/software/configuration/guide/sw/b_cflash.html
 
-
-
+> About VLAN tagging 
+https://supportforums.cisco.com/t5/lan-switching-and-routing/confused-about-frame-tagging/td-p/951219
+https://networkengineering.stackexchange.com/questions/6483/why-and-how-are-ethernet-vlans-tagged

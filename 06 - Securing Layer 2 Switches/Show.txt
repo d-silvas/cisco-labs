@@ -1,0 +1,287 @@
+! MAKE S1 STP ROOT
+S1#show spanning-tree
+
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     0013.c412.6e80
+             Cost        19
+             Port        1 (GigabitEthernet1/0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     6886.a7aa.b980
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi1/0/1             Root FWD 19        128.1    P2p
+Gi1/0/5             Desg FWD 19        128.5    P2p
+Gi1/0/6             Desg FWD 4         128.6    P2p
+
+S1(config)#spanning-tree vlan 1 priority 0
+S1(config)#exit
+S1#show spanning-tree
+
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    1
+             Address     6886.a7aa.b980
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    1      (priority 0 sys-id-ext 1)
+             Address     6886.a7aa.b980
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  15  sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi1/0/1             Desg FWD 19        128.1    P2p
+Gi1/0/5             Desg FWD 19        128.5    P2p
+Gi1/0/6             Desg FWD 4         128.6    P2p
+
+
+! MANUALLY CONFIGURING THE TRUNK PORTS
+
+S1(config)#interface gi1/0/1
+S1(config-if)#switchport mode trunk
+
+S2(config)#interface fa0/1
+S2(config-if)#switchport mode trunk
+Command rejected: An interface whose trunk encapsulation is "Auto" can not be configured to "trunk" mode.
+S2(config-if)#switchport trunk encapsulation dot1q
+S2(config-if)#switchport mode trunk
+S2(config-if)#end
+S2#show interfaces trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Fa0/1       on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Fa0/1       1-4094
+
+Port        Vlans allowed and active in management domain
+Fa0/1       1
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/1       1
+
+! After changing the native VLAN and disabling autonegotiation
+S1#show interfaces gi1/0/1 trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Gi1/0/1     on               802.1q         trunking      99
+
+Port        Vlans allowed on trunk
+Gi1/0/1     1-4094
+
+Port        Vlans allowed and active in management domain
+Gi1/0/1     1
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gi1/0/1     1
+
+S1#show interfaces gi1/0/1 switchport
+Name: Gi1/0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 99 (Inactive)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+! AFTER ENABLING PORTFAST / BPDUGUARD IN PORTS CONNECTED TO ENDPOINTS
+S1#show spanning-tree interface gi1/0/6 detail
+ Port 6 (GigabitEthernet1/0/6) of VLAN0001 is designated forwarding
+   Port path cost 4, Port priority 128, Port Identifier 128.6.
+   Designated root has priority 1, address 6886.a7aa.b980
+   Designated bridge has priority 1, address 6886.a7aa.b980
+   Designated port id is 128.6, designated path cost 0
+   Timers: message age 0, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   The port is in the portfast mode
+   Link type is point-to-point by default
+   Bpdu guard is enabled
+   BPDU: sent 2909, received 0
+
+! AFTER CONFIGURING ROOT GUARD ON S1 GI1/0/1
+S1#show spanning-tree inconsistentports
+
+Name                 Interface                Inconsistency
+-------------------- ------------------------ ------------------
+
+Number of inconsistent ports (segments) in the system : 0
+
+! AFTER CONFIGURING LOOPGUARD GLOBALLY ON S2. NOTE THAT WE HAD ALSO CONFIGURED PORTFAST AND BPDUGUARD GLOBALLY
+! (PORT FA0/18 IS NOT CONNECTED TO ANYTHING)
+S2#show spanning-tree summary
+Switch is in pvst mode
+Root bridge for: VLAN0099
+Extended system ID           is enabled
+Portfast Default             is enabled
+PortFast BPDU Guard Default  is enabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is enabled
+EtherChannel misconfig guard is enabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     0         0        0          1          1
+VLAN0099                     0         0        0          1          1
+---------------------- -------- --------- -------- ---------- ----------
+2 vlans                      0         0        0          2          2
+S2#show spanning-tree interface fa0/1 detail
+ Port 1 (FastEthernet0/1) of VLAN0001 is root forwarding
+   Port path cost 19, Port priority 128, Port Identifier 128.1.
+   Designated root has priority 1, address 6886.a7aa.b980
+   Designated bridge has priority 1, address 6886.a7aa.b980
+   Designated port id is 128.1, designated path cost 0
+   Timers: message age 2, forward delay 0, hold 0
+   Number of transitions to forwarding state: 2
+   Link type is point-to-point by default
+   Loop guard is enabled by default on the port
+   BPDU: sent 4372, received 1821
+
+ Port 1 (FastEthernet0/1) of VLAN0099 is designated forwarding
+   Port path cost 19, Port priority 128, Port Identifier 128.1.
+   Designated root has priority 32867, address 0013.c412.6e80
+   Designated bridge has priority 32867, address 0013.c412.6e80
+   Designated port id is 128.1, designated path cost 0
+   Timers: message age 0, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is point-to-point by default
+   Loop guard is enabled by default on the port
+   BPDU: sent 1570, received 0
+
+! AFTER CONFIGURING PORT SECURITY ON S1 GI1/0/5
+S1#show port-security interface gi1/0/5
+Port Security              : Enabled
+Port Status                : Secure-up
+Violation Mode             : Shutdown
+Aging Time                 : 0 mins
+Aging Type                 : Absolute
+SecureStatic Address Aging : Disabled
+Maximum MAC Addresses      : 1
+Total MAC Addresses        : 1
+Configured MAC Addresses   : 1
+Sticky MAC Addresses       : 0
+Last Source Address:Vlan   : 0000.0000.0000:0
+Security Violation Count   : 0
+
+! AFTER CHANGING R1'S MAC AND VIOLATING PORT-SECURITY
+S1#show port-security
+Secure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action
+                (Count)       (Count)          (Count)
+---------------------------------------------------------------------------
+    Gi1/0/5              1            1                  1         Shutdown
+---------------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 8192
+
+S1#show port-security interface gi1/0/5
+Port Security              : Enabled
+Port Status                : Secure-shutdown
+Violation Mode             : Shutdown
+Aging Time                 : 0 mins
+Aging Type                 : Absolute
+SecureStatic Address Aging : Disabled
+Maximum MAC Addresses      : 1
+Total MAC Addresses        : 1
+Configured MAC Addresses   : 1
+Sticky MAC Addresses       : 0
+Last Source Address:Vlan   : aaaa.aaaa.aaaa:1
+Security Violation Count   : 1
+
+S1#show port-security address
+               Secure Mac Address Table
+-----------------------------------------------------------------------------
+Vlan    Mac Address       Type                          Ports   Remaining Age
+                                                                   (mins)
+----    -----------       ----                          -----   -------------
+   1    0018.ba95.85ae    SecureConfigured              Gi1/0/5      -
+-----------------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 8192
+
+! AFTER ENABLING PVLAN EDGE FEATURE (PROTECTED PORT) ON GI1/0/6
+S1#show interfaces gi1/0/6 switchport
+Name: Gi1/0/6
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: static access
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: Off
+Access Mode VLAN: 20 (Users)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: true
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+! AFTER CONFIGURING DHCP SNOOPING
+S1#show ip dhcp snooping
+Switch DHCP snooping is enabled
+DHCP snooping is configured on following VLANs:
+1,20
+DHCP snooping is operational on following VLANs:
+1,20
+DHCP snooping is configured on the following L3 Interfaces:
+
+Insertion of option 82 is enabled
+   circuit-id default format: vlan-mod-port
+   remote-id: 6886.a7aa.b980 (MAC)
+Option 82 on untrusted port is not allowed
+Verification of hwaddr field is enabled
+Verification of giaddr field is enabled
+DHCP snooping trust/rate is configured on the following Interfaces:
+
+Interface                  Trusted    Allow option    Rate limit (pps)
+-----------------------    -------    ------------    ----------------
+GigabitEthernet1/0/5       yes        yes             unlimited
+  Custom circuit-ids:
+GigabitEthernet1/0/6       no         no              5
+  Custom circuit-ids:

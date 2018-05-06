@@ -1,0 +1,18 @@
+- switchport port-security mac-address / mac-address sticky difference
+- switchport port-security aging type inactivity / absolute
+- How to use 800 / 887 routers for a cheap lab. routers+switches?
+- How switches manange VLAN tags
+- Related to that: in a VLAN double-tagging attack, can the victim send 
+messages back to the attacker (thus allowing communication 
+between the two devices)????
+- Does switchport mode acess disable negotiations the same way as 
+switchport nonegotiate does (this one for trunk ports)???
+- DHCP starvation: can an attacker spoof his own hardware MAC address???
+(I guess the answer is NO because then he wouldn't receive the replies back 
+from the server??)
+- DHCP option 82 information???
+- do we need to do ip dhcp snooping and AFTER ip dhcp snooping vlan 1 ????
+- What do trusted/untrusted do in DAI and in dhcp snooping ???
+- Read about dtp
+- google nac environment
+- nac server/manager/agent

@@ -1,0 +1,99 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        R1                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+hostname R1
+no ip domain lookup
+!
+interface FastEthernet0
+ switchport mode access
+ switchport access vlan 2
+!
+interface FastEthernet1
+ switchport mode access
+!
+interface Vlan1
+ ip address 209.165.200.225 255.255.255.248
+!
+interface Vlan2
+ ip address 10.1.1.1 255.255.255.252
+ routing dynamic
+ no shutdown
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ exit
+!
+ip route 0.0.0.0 0.0.0.0 10.1.1.2
+!
+username admin privilege 15 algorithm-type scrypt secret cisco
+ip http server
+ip http authentication local
+end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        R2                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+hostname R2
+no ip domain lookup
+!
+interface FastEthernet0/0
+ ip address 10.1.1.2 255.255.255.252
+ no shutdown
+!
+interface Serial0/0/0
+ ip address 10.2.2.2 255.255.255.252
+ no shutdown
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ exit
+ip route 209.165.200.224 255.255.255.248 10.1.1.1
+ip route 172.16.3.0 255.255.255.0 10.2.2.1
+end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                        R3                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+hostname R3
+no ip domain lookup
+!
+interface Serial0/0/0
+ ip address 10.2.2.1 255.255.255.252
+ no shutdown
+!
+interface gigabitEthernet 0/0
+ ip address 172.16.3.1 255.255.255.0
+ no shutdown
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ exit
+ip route 0.0.0.0 0.0.0.0 10.2.2.2
+end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                  !
+!                       ASA                        !
+!                                                  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+interface Management 0/0
+ no ip address
+ shutdown
+!
+interface Ethernet0/1
+ nameif inside
+ security-level 100
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+!
+http server enable
+http 192.168.1.0 255.255.255.0 inside
